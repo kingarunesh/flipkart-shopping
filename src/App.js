@@ -1,7 +1,9 @@
+import Layout from "./components/layout/Layout";
+
 export default function App() {
     return (
         <>
-            <h1>Hello, Arunesh</h1>
+            <Layout />
         </>
     );
 }

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
-export default function Products() {
+export default function Home() {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [total, setTotal] = useState(6);
@@ -10,6 +10,8 @@ export default function Products() {
     const [singleProduct, setSingleProduct] = useState(null);
     const [imgList, setImgList] = useState(null);
     const [imgPos, setImgPos] = useState(0);
+
+    // const
 
     //NOTE :    get 6 products and get more products by pressing button
     useEffect(

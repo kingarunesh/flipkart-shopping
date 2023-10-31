@@ -5,6 +5,7 @@ export default function Products() {
     const [isLoading, setIsLoading] = useState(false);
     const [total, setTotal] = useState(6);
 
+    /*  NOTE :    get all products
     useEffect(function () {
         async function getProducts() {
             setIsLoading(true);
@@ -18,6 +19,25 @@ export default function Products() {
 
         getProducts();
     }, []);
+    */
+
+    //NOTE :    get 6 products and get more products by pressing button
+    useEffect(
+        function () {
+            async function getProducts() {
+                setIsLoading(true);
+
+                const response = await fetch(`https://dummyjson.com/products?limit=${total}`);
+                const data = await response.json();
+                setProducts(data.products);
+
+                setIsLoading(false);
+            }
+
+            getProducts();
+        },
+        [total]
+    );
 
     function loadMoreHandler() {
         setTotal((c) => c + 6);
@@ -77,13 +97,3 @@ export default function Products() {
         </>
     );
 }
-
-// image
-
-// title
-
-// price | disocunt price
-
-// rating | stock
-
-// add to cart | buy now

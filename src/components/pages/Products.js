@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 export default function Products() {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [total, setTotal] = useState(6);
 
     useEffect(function () {
         async function getProducts() {
@@ -17,6 +18,10 @@ export default function Products() {
 
         getProducts();
     }, []);
+
+    function loadMoreHandler() {
+        setTotal((c) => c + 6);
+    }
 
     return (
         <>
@@ -64,6 +69,10 @@ export default function Products() {
                         );
                     })
                 )}
+            </div>
+
+            <div className="products__container--load-more">
+                <button onClick={loadMoreHandler}>Load More...</button>
             </div>
         </>
     );

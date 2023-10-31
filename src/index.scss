@@ -14,7 +14,7 @@ body {
 
 //SECTION :     container
 .container {
-    background-color: red;
+    // background-color: red;
 
     display: grid;
     grid-template-columns: 20rem 1fr;
@@ -116,6 +116,25 @@ body {
                 &--buy {
                     background-color: orangered;
                 }
+            }
+        }
+    }
+
+    &--load-more {
+        margin: 2rem auto;
+        grid-column: 2/-1;
+
+        button {
+            padding: 0.8rem 1.4rem;
+            border-radius: 1rem;
+            font-size: 1.6rem;
+            border: 1px solid #bbb;
+            cursor: pointer;
+            background-color: #eee;
+            transition: all 0.5s;
+
+            &:hover {
+                background-color: #ddd;
             }
         }
     }

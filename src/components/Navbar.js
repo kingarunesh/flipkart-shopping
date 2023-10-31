@@ -4,7 +4,7 @@ export default function Navbar({ query, setQuery }) {
     const [hoverMenu, setHoverMenu] = useState("");
     const [showMenu, setShowMenu] = useState(false);
 
-    const [showCart, setShowCart] = useState(true);
+    const [showCart, setShowCart] = useState(false);
 
     function listHandler(value) {
         setHoverMenu(value);
@@ -55,7 +55,7 @@ export default function Navbar({ query, setQuery }) {
                         <li>Register</li>
                         <li className="cart__conatiner">
                             <div className="cart__conatiner--title">
-                                Cart <span class="material-symbols-outlined">expand_more</span>
+                                Cart <span className="material-symbols-outlined">expand_more</span>
                             </div>
 
                             {showCart && (
@@ -77,7 +77,7 @@ export default function Navbar({ query, setQuery }) {
                                                     </div>
 
                                                     <button className="removeCart">
-                                                        <span class="material-symbols-outlined">delete</span>
+                                                        <span className="material-symbols-outlined">delete</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -100,7 +100,7 @@ export default function Navbar({ query, setQuery }) {
                                                     </div>
 
                                                     <button className="removeCart">
-                                                        <span class="material-symbols-outlined">delete</span>
+                                                        <span className="material-symbols-outlined">delete</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@ export default function Navbar({ query, setQuery }) {
                                                     </div>
 
                                                     <button className="removeCart">
-                                                        <span class="material-symbols-outlined">delete</span>
+                                                        <span className="material-symbols-outlined">delete</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -142,7 +142,7 @@ export default function Navbar({ query, setQuery }) {
                                                     </div>
 
                                                     <button className="removeCart">
-                                                        <span class="material-symbols-outlined">delete</span>
+                                                        <span className="material-symbols-outlined">delete</span>
                                                     </button>
                                                 </div>
                                             </div>

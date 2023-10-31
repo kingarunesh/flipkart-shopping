@@ -62,7 +62,51 @@ export default function Navbar() {
             {showMenu && (
                 <div className="container--header--hover_menu_container" onMouseLeave={leaveListHandler}>
                     <div className="container--header--hover_menu_container--box">
-                        <h2>{hoverMenu}</h2>
+                        {/* NOTE :      fashion       */}
+                        {hoverMenu === "fashion" && (
+                            <ul>
+                                <li>Shirt</li>
+                                <li>Jeans</li>
+                                <li>Shoes</li>
+                                <li>Sleeper</li>
+                                <li>Cap</li>
+                                <li>Gloves</li>
+                            </ul>
+                        )}
+
+                        {/* NOTE :      mobiels       */}
+                        {hoverMenu === "mobiles" && (
+                            <ul>
+                                <li>Samsung</li>
+                                <li>Realme</li>
+                                <li>Oppo</li>
+                                <li>Apple</li>
+                                <li>Pixel</li>
+                                <li>Nothing</li>
+                            </ul>
+                        )}
+
+                        {/* NOTE :      travel       */}
+                        {hoverMenu === "travel" && (
+                            <ul>
+                                <li>Bangalore</li>
+                                <li>Delhi</li>
+                                <li>Pune</li>
+                                <li>Mumbai</li>
+                                <li>Goa</li>
+                            </ul>
+                        )}
+
+                        {/* NOTE :      food       */}
+                        {hoverMenu === "food" && (
+                            <ul>
+                                <li>Pizza</li>
+                                <li>Veg Meal</li>
+                                <li>Non-Veg Meal</li>
+                                <li>Burger</li>
+                                <li>Mongo Juice</li>
+                            </ul>
+                        )}
                     </div>
                 </div>
             )}

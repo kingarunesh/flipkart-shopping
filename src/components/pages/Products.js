@@ -8,6 +8,8 @@ export default function Products() {
     const [modal, setModal] = useState(false);
     const [productID, setProductID] = useState(null);
     const [singleProduct, setSingleProduct] = useState(null);
+    const [imgList, setImgList] = useState(null);
+    const [imgPos, setImgPos] = useState(0);
 
     //NOTE :    get 6 products and get more products by pressing button
     useEffect(
@@ -48,6 +50,8 @@ export default function Products() {
                     const data = await response.json();
                     setSingleProduct(data);
 
+                    setImgList(data.images);
+
                     setIsLoading(false);
                 } catch (error) {
                     console.log("product not found");
@@ -62,6 +66,19 @@ export default function Products() {
     function closeModalHandler() {
         setModal(false);
         setProductID(null);
+        setImgPos(0);
+    }
+
+    function leftImageHandler() {
+        imgPos > 0 && setImgPos((c) => c - 1);
+
+        // setImgPos((c) => c - 1);
+    }
+
+    function rightImageHandler() {
+        imgPos < imgList.length - 1 && setImgPos((c) => c + 1);
+
+        // setImgPos((c) => c + 1);
     }
 
     return (
@@ -80,13 +97,14 @@ export default function Products() {
 
                             {/*     image slider    */}
                             <div className="modal__conatiner--box--img">
-                                <img src={singleProduct.thumbnail} alt={singleProduct.title} />
+                                {/* <img src={singleProduct.thumbnail} alt={singleProduct.title} /> */}
+                                <img src={imgList ? imgList[imgPos] : singleProduct.thumbnail} alt={singleProduct.title} />
 
-                                <button className="modal__conatiner--box--img--control_left">
+                                <button className="modal__conatiner--box--img--control_left" onClick={leftImageHandler}>
                                     <span className="material-symbols-outlined">chevron_left</span>
                                 </button>
 
-                                <button className="modal__conatiner--box--img--control_right">
+                                <button className="modal__conatiner--box--img--control_right" onClick={rightImageHandler}>
                                     <span className="material-symbols-outlined">chevron_right</span>
                                 </button>
                             </div>

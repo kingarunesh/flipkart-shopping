@@ -6,10 +6,13 @@ export default function Products() {
 
     useEffect(function () {
         async function getProducts() {
+            setIsLoading(true);
+
             const response = await fetch("https://dummyjson.com/products");
             const data = await response.json();
-
             setProducts(data.products);
+
+            setIsLoading(false);
         }
 
         getProducts();
@@ -18,45 +21,49 @@ export default function Products() {
     return (
         <>
             <div className="products__container">
-                {products.map((item) => {
-                    return (
-                        <div className="products__container--card" key={item.id}>
-                            <img src={item.thumbnail} alt={item.title} />
+                {isLoading ? (
+                    <div className="loading"></div>
+                ) : (
+                    products.map((item) => {
+                        return (
+                            <div className="products__container--card" key={item.id}>
+                                <img src={item.thumbnail} alt={item.title} />
 
-                            <div className="products__container--card--content">
-                                <h2>{item.title}</h2>
+                                <div className="products__container--card--content">
+                                    <h2>{item.title}</h2>
 
-                                <div className="products__container--card--content--info">
-                                    <div className="products__container--card--content--info--pd">
-                                        <div className="products__container--card--content--info--pd--price">
-                                            <strong>Price:</strong> <span className="price">{item.price}$</span>
+                                    <div className="products__container--card--content--info">
+                                        <div className="products__container--card--content--info--pd">
+                                            <div className="products__container--card--content--info--pd--price">
+                                                <strong>Price:</strong> <span className="price">{item.price}$</span>
+                                            </div>
+                                            <div className="products__container--card--content--info--pd--stock">
+                                                <strong>Dicount:</strong>{" "}
+                                                <span className="hightLight">{item.discountPercentage}%</span>
+                                            </div>
                                         </div>
-                                        <div className="products__container--card--content--info--pd--stock">
-                                            <strong>Dicount:</strong>{" "}
-                                            <span className="hightLight">{item.discountPercentage}%</span>
+
+                                        <div className="products__container--card--content--info--rs">
+                                            <div className="products__container--card--content--info--rs--rating">
+                                                <strong>Rating:</strong> <span className="hightLight">{item.rating}</span>
+                                            </div>
+
+                                            <div className="products__container--card--content--info--rs--stock">
+                                                <strong>Stock:</strong> <span className="hightLight">{item.stock}</span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div className="products__container--card--content--info--rs">
-                                        <div className="products__container--card--content--info--rs--rating">
-                                            <strong>Rating:</strong> <span className="hightLight">{item.rating}</span>
-                                        </div>
+                                    <div className="products__container--card--content--buttons">
+                                        <button className="products__container--card--content--buttons--cart">add to cart</button>
 
-                                        <div className="products__container--card--content--info--rs--stock">
-                                            <strong>Stock:</strong> <span className="hightLight">{item.stock}</span>
-                                        </div>
+                                        <button className="products__container--card--content--buttons--buy">buy now</button>
                                     </div>
-                                </div>
-
-                                <div className="products__container--card--content--buttons">
-                                    <button className="products__container--card--content--buttons--cart">add to cart</button>
-
-                                    <button className="products__container--card--content--buttons--buy">buy now</button>
                                 </div>
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })
+                )}
             </div>
         </>
     );

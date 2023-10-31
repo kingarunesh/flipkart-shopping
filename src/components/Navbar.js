@@ -4,6 +4,8 @@ export default function Navbar({ query, setQuery }) {
     const [hoverMenu, setHoverMenu] = useState("");
     const [showMenu, setShowMenu] = useState(false);
 
+    const [showCart, setShowCart] = useState(true);
+
     function listHandler(value) {
         setHoverMenu(value);
         setShowMenu(true);
@@ -51,7 +53,112 @@ export default function Navbar({ query, setQuery }) {
                     <ul>
                         <li>Login</li>
                         <li>Register</li>
-                        <li>Cart</li>
+                        <li className="cart__conatiner">
+                            <div className="cart__conatiner--title">
+                                Cart <span class="material-symbols-outlined">expand_more</span>
+                            </div>
+
+                            {showCart && (
+                                <div className="cart__conatiner--content">
+                                    <ul>
+                                        {/*  */}
+                                        <li>
+                                            <img
+                                                src="https://images.unsplash.com/photo-1698694840029-a8ff76ba8bb4?auto=format&fit=crop&q=80&w=1975&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                                alt="hello"
+                                            />
+
+                                            <div>
+                                                <h3>Samsung Galaxy s7</h3>
+
+                                                <div>
+                                                    <div>
+                                                        <strong>Price:</strong> <span>899$</span>
+                                                    </div>
+
+                                                    <button className="removeCart">
+                                                        <span class="material-symbols-outlined">delete</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        {/*  */}
+
+                                        <li>
+                                            <img
+                                                src="https://images.unsplash.com/photo-1698694840029-a8ff76ba8bb4?auto=format&fit=crop&q=80&w=1975&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                                alt="hello"
+                                            />
+
+                                            <div>
+                                                <h3>Samsung Galaxy s7</h3>
+
+                                                <div>
+                                                    <div>
+                                                        <strong>Price:</strong> <span>899$</span>
+                                                    </div>
+
+                                                    <button className="removeCart">
+                                                        <span class="material-symbols-outlined">delete</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <img
+                                                src="https://images.unsplash.com/photo-1698694840029-a8ff76ba8bb4?auto=format&fit=crop&q=80&w=1975&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                                alt="hello"
+                                            />
+
+                                            <div>
+                                                <h3>Samsung Galaxy s7</h3>
+
+                                                <div>
+                                                    <div>
+                                                        <strong>Price:</strong> <span>899$</span>
+                                                    </div>
+
+                                                    <button className="removeCart">
+                                                        <span class="material-symbols-outlined">delete</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <img
+                                                src="https://images.unsplash.com/photo-1698694840029-a8ff76ba8bb4?auto=format&fit=crop&q=80&w=1975&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                                alt="hello"
+                                            />
+
+                                            <div>
+                                                <h3>Samsung Galaxy s7</h3>
+
+                                                <div>
+                                                    <div>
+                                                        <strong>Price:</strong> <span>899$</span>
+                                                    </div>
+
+                                                    <button className="removeCart">
+                                                        <span class="material-symbols-outlined">delete</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        {/*  */}
+                                    </ul>
+
+                                    <div className="cart__conatiner--content--amount">
+                                        Total Acount : <strong>500$</strong>
+                                    </div>
+
+                                    <button className="cart__conatiner--content--buy">buy now</button>
+                                </div>
+                            )}
+                        </li>
                         <li>Dashboard</li>
                     </ul>
                 </div>

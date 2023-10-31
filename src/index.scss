@@ -459,3 +459,119 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+//NOTE :        cart
+.cart__conatiner {
+    position: relative;
+
+    &--title {
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            color: #ccc;
+        }
+    }
+
+    &--content {
+        background-color: #eee;
+        width: 40rem;
+        box-shadow: 0px 0px 2px 1px #ccc;
+
+        position: absolute;
+        top: 3rem;
+        left: -20rem;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            list-style: none;
+            margin: 0;
+            padding: 1rem;
+
+            li {
+                color: #222;
+                cursor: context-menu;
+
+                display: flex;
+                gap: 1rem;
+
+                &:not(:last-child) {
+                    border-bottom: 2px solid #bbb;
+                }
+
+                img {
+                    width: 8rem;
+                    height: 8rem;
+                    border-radius: 50%;
+                }
+
+                div {
+                    margin-bottom: 1rem;
+
+                    h3 {
+                        font-size: 1.8rem;
+                    }
+
+                    div {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 1rem;
+                        align-items: center;
+
+                        div {
+                            font-size: 1.6rem;
+
+                            span {
+                                background-color: yellow;
+                                display: inline-block;
+                                padding: 0.4rem 0.8rem;
+                                border-radius: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &--amount {
+            background-color: #ddd;
+            color: #222;
+            padding: 2rem 1.4rem;
+        }
+
+        &--buy {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            font-size: 1.8rem;
+            background-color: orangered;
+            color: #eee;
+            border: none;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.5s;
+
+            &:hover {
+                background-color: rgb(180, 48, 0);
+            }
+        }
+    }
+}
+
+//NOTE :     cart
+.removeCart {
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: red;
+    border: none;
+    transition: all 0.5s;
+
+    span {
+        font-size: 3.4rem;
+    }
+
+    &:hover {
+        color: rgb(190, 0, 0);
+    }
+}

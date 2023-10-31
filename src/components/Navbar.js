@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function Navbar() {
-    const [query, setQuery] = useState("");
-    const [products, setProducts] = useState([]);
-
+export default function Navbar({ query, setQuery }) {
     const [hoverMenu, setHoverMenu] = useState("");
     const [showMenu, setShowMenu] = useState(false);
 
@@ -16,24 +13,6 @@ export default function Navbar() {
         setHoverMenu("");
         setShowMenu(false);
     }
-
-    // NOTE :       search
-    useEffect(
-        function () {
-            async function getProducts() {
-                if (query !== "") {
-                    const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
-                    const data = await response.json();
-                    setProducts(data.products);
-                } else {
-                    setProducts([]);
-                }
-            }
-
-            getProducts();
-        },
-        [query]
-    );
 
     return (
         <header className="container--header">

@@ -1,16 +1,20 @@
+import { useState } from "react";
+
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import Home from "./Home";
+import Products from "./Products";
 
 export default function Layout() {
+    const [query, setQuery] = useState("");
+
     return (
         <>
             <div className="container">
-                <Navbar />
+                <Navbar query={query} setQuery={setQuery} />
 
                 <Sidebar />
 
-                <Home />
+                <Products query={query} setQuery={setQuery} />
             </div>
         </>
     );

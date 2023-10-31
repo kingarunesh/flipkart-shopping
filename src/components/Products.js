@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Products() {
+export default function Products({ query }) {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [total, setTotal] = useState(6);
@@ -17,16 +17,25 @@ export default function Products() {
             async function getProducts() {
                 setIsLoading(true);
 
-                const response = await fetch(`https://dummyjson.com/products?limit=${total}`);
-                const data = await response.json();
-                setProducts(data.products);
+                //  search
+                if (query !== "") {
+                    // const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+                    const response = await fetch(`https://dummyjson.com/products/search?q=${query}&limit=${total}`);
+                    const data = await response.json();
+                    setProducts(data.products);
+                } else {
+                    //  all products
+                    const response = await fetch(`https://dummyjson.com/products?limit=${total}`);
+                    const data = await response.json();
+                    setProducts(data.products);
+                }
 
                 setIsLoading(false);
             }
 
             getProducts();
         },
-        [total]
+        [total, query]
     );
 
     //NOTE :        load more data
@@ -71,10 +80,14 @@ export default function Products() {
 
     function leftImageHandler() {
         imgPos > 0 && setImgPos((c) => c - 1);
+
+        // setImgPos((c) => c - 1);
     }
 
     function rightImageHandler() {
         imgPos < imgList.length - 1 && setImgPos((c) => c + 1);
+
+        // setImgPos((c) => c + 1);
     }
 
     return (
@@ -93,6 +106,7 @@ export default function Products() {
 
                             {/*     image slider    */}
                             <div className="modal__conatiner--box--img">
+                                {/* <img src={singleProduct.thumbnail} alt={singleProduct.title} /> */}
                                 <img src={imgList ? imgList[imgPos] : singleProduct.thumbnail} alt={singleProduct.title} />
 
                                 <button className="modal__conatiner--box--img--control_left" onClick={leftImageHandler}>
@@ -149,6 +163,10 @@ export default function Products() {
             <div className="products__container">
                 {isLoading ? (
                     <div className="loading"></div>
+                ) : products.length === 0 ? (
+                    <div className="result-not-found">
+                        <h2>Result not found </h2>
+                    </div>
                 ) : (
                     products.map((item) => {
                         return (

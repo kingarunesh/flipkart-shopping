@@ -5,21 +5,9 @@ export default function Products() {
     const [isLoading, setIsLoading] = useState(false);
     const [total, setTotal] = useState(6);
 
-    /*  NOTE :    get all products
-    useEffect(function () {
-        async function getProducts() {
-            setIsLoading(true);
-
-            const response = await fetch("https://dummyjson.com/products");
-            const data = await response.json();
-            setProducts(data.products);
-
-            setIsLoading(false);
-        }
-
-        getProducts();
-    }, []);
-    */
+    const [modal, setModal] = useState(false);
+    const [productID, setProductID] = useState(null);
+    const [singleProduct, setSingleProduct] = useState(null);
 
     //NOTE :    get 6 products and get more products by pressing button
     useEffect(
@@ -39,12 +27,112 @@ export default function Products() {
         [total]
     );
 
+    //NOTE :        load more data
     function loadMoreHandler() {
         setTotal((c) => c + 6);
     }
 
+    //NOTE :        modal
+    function detailProductHandler(id) {
+        setProductID(id);
+        setModal(true);
+    }
+
+    useEffect(
+        function () {
+            async function getProduct() {
+                try {
+                    setIsLoading(true);
+
+                    const response = await fetch(`https://dummyjson.com/products/${productID}`);
+                    const data = await response.json();
+                    setSingleProduct(data);
+
+                    setIsLoading(false);
+                } catch (error) {
+                    console.log("product not found");
+                }
+            }
+
+            getProduct();
+        },
+        [productID]
+    );
+
+    function closeModalHandler() {
+        setModal(false);
+        setProductID(null);
+    }
+
     return (
         <>
+            {/* SECTION :       modal        */}
+            {modal &&
+                (isLoading ? (
+                    <div className="loading"></div>
+                ) : (
+                    <div className="modal__conatiner">
+                        <div className="modal__conatiner--box">
+                            {/*     close   */}
+                            <div className="modal__conatiner--box--close" onClick={closeModalHandler}>
+                                <span className="material-symbols-outlined">close</span>
+                            </div>
+
+                            {/*     image slider    */}
+                            <div className="modal__conatiner--box--img">
+                                <img src={singleProduct.thumbnail} alt={singleProduct.title} />
+
+                                <button className="modal__conatiner--box--img--control_left">
+                                    <span className="material-symbols-outlined">chevron_left</span>
+                                </button>
+
+                                <button className="modal__conatiner--box--img--control_right">
+                                    <span className="material-symbols-outlined">chevron_right</span>
+                                </button>
+                            </div>
+
+                            {/*     content      */}
+                            <div className="modal__conatiner--box--content">
+                                <div className="modal__conatiner--box--content--text">
+                                    <h2>{singleProduct.title}</h2>
+
+                                    <p>{singleProduct.description}</p>
+                                </div>
+
+                                <div className="modal__conatiner--box--content--info">
+                                    <div>
+                                        <strong>Price:</strong> <span>{singleProduct.price}$</span>
+                                    </div>
+
+                                    <div>
+                                        <strong>Discount Percentage:</strong> <span>{singleProduct.discountPercentage}%</span>
+                                    </div>
+
+                                    <div>
+                                        <strong>Rating:</strong> <span>{singleProduct.rating}</span>
+                                    </div>
+                                    <div>
+                                        <strong>Stock:</strong> <span>{singleProduct.stock}</span>
+                                    </div>
+
+                                    <div>
+                                        <strong>Brand:</strong> <span>{singleProduct.brand}</span>
+                                    </div>
+                                    <div>
+                                        <strong>Category:</strong> <span>{singleProduct.category}</span>
+                                    </div>
+                                </div>
+
+                                <div className="modal__conatiner--box--content--cart_buy">
+                                    <button className="modal__conatiner--box--content--cart_buy--cart">add to cart</button>
+                                    <button className="modal__conatiner--box--content--cart_buy--buy">buy now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+
+            {/* SECTION :       products        */}
             <div className="products__container">
                 {isLoading ? (
                     <div className="loading"></div>
@@ -52,7 +140,7 @@ export default function Products() {
                     products.map((item) => {
                         return (
                             <div className="products__container--card" key={item.id}>
-                                <img src={item.thumbnail} alt={item.title} />
+                                <img src={item.thumbnail} alt={item.title} onClick={() => detailProductHandler(item.id)} />
 
                                 <div className="products__container--card--content">
                                     <h2>{item.title}</h2>

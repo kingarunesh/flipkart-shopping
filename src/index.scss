@@ -22,13 +22,13 @@ body {
     //NOTE :        header
     &--header {
         background-color: rgb(0, 54, 108);
-        // height: 8rem;
         padding: 2rem 4rem;
+        letter-spacing: 1.6px;
 
         grid-column: 1/-1;
         grid-row: 1/2;
 
-        letter-spacing: 1.6px;
+        position: relative;
 
         &--menu {
             display: flex;
@@ -81,6 +81,10 @@ body {
 
                     display: flex;
                     gap: 1.4rem;
+
+                    li {
+                        cursor: pointer;
+                    }
                 }
             }
 
@@ -98,8 +102,23 @@ body {
 
                     display: flex;
                     gap: 1.4rem;
+
+                    li {
+                        cursor: pointer;
+                    }
                 }
             }
+        }
+
+        &--hover_menu_container {
+            background-color: #eee;
+            width: 100%;
+            height: 50rem;
+            border-bottom: 0.4rem solid #aaa;
+
+            position: absolute;
+            top: 100%;
+            left: 0;
         }
     }
 

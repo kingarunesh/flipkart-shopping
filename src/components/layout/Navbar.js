@@ -3,18 +3,36 @@ import { useState } from "react";
 export default function Navbar() {
     const [query, setQuery] = useState("");
 
+    const [hoverMenu, setHoverMenu] = useState("");
+    const [showMenu, setShowMenu] = useState(false);
+
+    function listHandler(value) {
+        setHoverMenu(value);
+        setShowMenu(true);
+    }
+
+    function leaveListHandler() {
+        setHoverMenu("");
+        setShowMenu(false);
+    }
+
     return (
         <header className="container--header">
             <nav className="container--header--menu">
+                {/* NOTE :      product list       */}
                 <div className="container--header--menu--left">
                     <ul>
-                        <li>Fashion</li>
-                        <li>Mobiles</li>
-                        <li>Travel</li>
-                        <li>Food</li>
+                        <li onMouseEnter={() => listHandler("fashion")}>Fashion</li>
+
+                        <li onMouseEnter={() => listHandler("mobiles")}>Mobiles</li>
+
+                        <li onMouseEnter={() => listHandler("travel")}>Travel</li>
+
+                        <li onMouseEnter={() => listHandler("food")}>Food</li>
                     </ul>
                 </div>
 
+                {/* NOTE :      serach       */}
                 <div className="container--header--menu--center">
                     <div className="container--header--menu--center--search_icon">
                         <span className="material-symbols-outlined">search</span>
@@ -30,6 +48,7 @@ export default function Navbar() {
                     </form>
                 </div>
 
+                {/* NOTE :      account       */}
                 <div className="container--header--menu--right">
                     <ul>
                         <li>Login</li>
@@ -39,6 +58,19 @@ export default function Navbar() {
                     </ul>
                 </div>
             </nav>
+
+            {showMenu && (
+                <div className="container--header--hover_menu_container" onMouseLeave={leaveListHandler}>
+                    <div className="container--header--hover_menu_container--box">
+                        <h2>{hoverMenu}</h2>
+                    </div>
+                </div>
+            )}
         </header>
     );
 }
+
+// onMouseLeave = { leaveListHandler };
+// onMouseLeave = { leaveListHandler };
+// onMouseLeave = { leaveListHandler };
+// onMouseLeave = { leaveListHandler };

@@ -11,6 +11,9 @@ export default function Products({ query }) {
     const [imgList, setImgList] = useState(null);
     const [imgPos, setImgPos] = useState(0);
 
+    const [cartID, setCartID] = useState(null);
+    const [cart, setCart] = useState([]);
+
     //NOTE :    get 6 products and get more products by pressing button
     useEffect(
         function () {
@@ -89,6 +92,26 @@ export default function Products({ query }) {
 
         // setImgPos((c) => c + 1);
     }
+
+    //NOTE :        cart handler
+    function cartHandler(id) {
+        setCartID(id);
+    }
+
+    useEffect(
+        function () {
+            if (!cartID) return;
+
+            async function getProduct() {
+                const response = await fetch(`https://dummyjson.com/products/${cartID}`);
+                const data = await response.json();
+                setCart((items) => [...items, data]);
+            }
+            getProduct();
+        },
+
+        [cartID]
+    );
 
     return (
         <>
@@ -199,7 +222,12 @@ export default function Products({ query }) {
                                     </div>
 
                                     <div className="products__container--card--content--buttons">
-                                        <button className="products__container--card--content--buttons--cart">add to cart</button>
+                                        <button
+                                            className="products__container--card--content--buttons--cart"
+                                            onClick={() => cartHandler(item.id)}
+                                        >
+                                            add to cart
+                                        </button>
 
                                         <button className="products__container--card--content--buttons--buy">buy now</button>
                                     </div>
